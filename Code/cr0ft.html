@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 frameset//EN" "http://www.w3.org/TR
+/html4/frameset.dtd">
+<html>
+<!-- CR0FT - Comparison of Robust F0 Trackers. D. Gibbon -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>
+CR0FT - Comparison of Robust F0 Trackers. D. Gibbon
+</title>
+
+<style type="text/css">
+    tdp {font-size:14}
+    td {font-size:14}
+    p {font-size:14}
+    pb {font-size:14;font-weight:bold}
+    li {font-size:12}
+    small {font-size:12}
+    big {font-size:18;font-weight:bold}
+    verybig {font-size:24;font-weight:bold}
+</style>
+
+</head>
+
+<body> 
+
+<pb align="center">
+<font size=+2>
+<b>CR0FT - Comparison of Robust F0 Trackers V02</b>
+</font>
+</pb>
+
+
+
+<!-- Beginning of form -------------------------------------------------->
+<!-- <form> tag must NOT be in table for Chrome and some other browsers -->
+
+<form method="post" action="/cgi-bin/CR0FT-CGI/cr0ft-cgi.py">
+
+<!-- Parameter table -------------------------------------------------------->
+
+<!-- Outer table -->
+
+<table>
+
+<tr valign="top" align="left" valign="top"><td align="center" valign="middle">
+
+<input value=" ESTIMATE F0" type="submit">
+<br><br>
+<input value=" Reset F0 Form " type="reset">
+<br><br>
+<a href="documentation.html">Documentation</a>
+<br><br>
+<b>Voice Type Shortcut*</b><br>
+<select name=voicetype>
+<option selected value="high">higher pitch</option>
+<option value="low">lower pitch</option>
+<option value="custom"><i>custom (italics)</i></option>
+</select>
+<br><br>
+<i>Feedback welcome!</i>
+
+</td><td>
+<hr width=0 color="white">
+</td><td>
+
+<!-- Column 1 -->
+
+<table><tr><td>
+
+<b>Metadata</b>
+<br>
+<textarea name="metadata" rows="3" cols="35">Description:<br>Comparison of F0 estimators.
+Visualisation of factors in F0 extraction
+</textarea>
+<br>
+<b>Data</b>
+<br>
+<select name=filebase>
+<option selected value="jiayan-5s">North Wind & Sun (Mandarin, jiayan)</option>
+<option value="liangjj-3.8s">North Wind & Sun (Mandarin, liangjj)</option>
+<option value="liupeng-4s">North Wind & Sun (Mandarin, liupeng)</option>
+<option value="liuqp-6s">North Wind & Sun (Mandarin, liuqp)</option>
+<option value="liyang-4s">North Wind & Sun (Mandarin, liyang)</option>
+<option value="shjj-4.6s">North Wind & Sun (Mandarin, shjj)</option>
+<option value="tangzd-6s">North Wind & Sun (Mandarin, tangzd)</option>
+<option value="wangwei-5s">North Wind & Sun (Mandarin, wangwei)</option>
+<option value="wuxi-5s">North Wind & Sun (Mandarin, wuxi)</option>
+<option value="xn-3s">North Wind & Sun (Mandarin, xn)</option>
+<option value="Abercrombie-short">North Wind & Sun (English RP, Abercrombie)</option>
+<option value="sine-200x5x6">Modulated 200x5 sinusoid calibration signal</option>
+</select>
+<br>
+<b>Algorithms:</b>
+<br>
+FFT <input type="checkbox" name="fft" value="on" checked>
+Zero Crossing <input type="checkbox" name="zerox" value="on" checked>
+Peak Picking <input type="checkbox" name="peaks" value="on">
+<br>
+Polynomial model <input type="text" name="polymodel" value="0" size="2em">
+
+</td></tr></table>
+
+</td><td>
+
+<table align=center>
+<tr><td colspan="2">
+<b>Waveform pre-filters</b>
+</td></tr><tr><td>
+</td></tr><tr><td align="right">
+<i>High pass: cutoff</i> (Hz)</td><td> <input name="cutoffhi" type="text" value="150" size="2em">
+</td></tr><tr><td align="right">
+order</td><td> <input name="orderhi" type="text" value="3" size="2em">
+</td></tr><tr><td align="right">
+<i>Low pass: cutoff</i> (Hz)</td><td> <input name="cutofflo" type="text" value="250" size="2em">
+</td></tr><tr><td align="right">
+order</td><td> <input name="orderlo" type="text" value="5" size="2em">
+</td></tr><tr><td>
+Centre clipping factor</td><td> <input name="centreclip" type="text" value="0.15" size="2em">
+</td></tr><tr><td>
+Downsampling factor</td><td> <input name="downsample" type="text" value="1" size="2em">
+</td></tr>
+
+</table>
+
+</td><td>
+
+<!-- Column 3 -->
+
+<table align="center" valign="top">
+<tr><td colspan=2>
+<b>F0 windowing</b>
+</td></tr><tr><td>
+F0 sample window (s)</td><td> <input name="f0framerate" type="text" value="0.01" size="2em">
+</td></tr><tr><td>
+F0 window step factor</td><td> <input name="f0stepfactor" type="text" value="1" size="2em">
+
+</td></tr><tr><td colspan=2>
+<b>F0 post-filters</b>
+</td></tr><tr><td>
+F0 median filter</td><td> <input name="f0median" type="text" value="5" size="2em">
+<!--
+</td></tr><tr><td align="right">
+Voice: window (samples)</td><td> <input name="voicewin" type="text" value="3" size="2em">
+</td></tr><tr><td align="right">
+mean diff (Hz)</td><td> <input name="voicediff" type="text" value="160" size="2em">
+</td></tr><tr><td>
+-->
+</td></tr><tr><td align="right">
+<i>F0 clip min</i> (Hz)</td><td> <input name="f0clipmin" type="text" value="120" size="2em">
+</td></tr><tr align=right><td>
+<i>F0 clip max</i> (Hz)</td><td> <input name="f0clipmax" type="text" value="350" size="2em">
+</td></tr></table>
+
+</td><td>
+
+<!-- Column 4 -->
+
+<table align="center" valign="top">
+<tr><td colspan="2">
+<b>Figure dimensions</b>
+</td></tr><tr><td>
+Width (in)</td><td> <input name="figwidth" type="text" value="20" size="2em">
+</td></tr><tr><td>
+Height (in)</td><td> <input name="figheight" type="text" value="20" size="2em">
+</td></tr><tr><td>
+<i>F0 min</i> (Hz)</td><td> <input name="f0min" type="text" value="120" size="2em">
+</td></tr><tr><td>
+<i>F0 max</i> (Hz)</td><td> <input name="f0max" type="text" value="350" size="2em">
+</td></tr><tr><td align=center colspan="2">
+<select name="howmanyplots">
+<option selected value="multipleplots">Multiple plots</option>
+<option value="singleplot">Single plot</option>
+</select>
+</td></tr>
+</table>
+
+</td><td>
+
+<!-- Column 5 -->
+
+<table>
+<tr><td><b>Plot flags:</b></td></tr>
+
+<tr><td>S0FT</td><td><input type="checkbox" name="s0ftflag" value="on" checked></td></tr>
+<tr><td>RAPT**</td><td><input type="checkbox" name="raptflag" value="on" checked></td></tr>
+<tr><td>PyRapt***</td><td><input type="checkbox" name="pyraptflag" value="on" checked></td></tr>
+<tr><td>Praat**</td><td><input type="checkbox" name="praatflag" value="on" checked></td></tr>
+<tr><td>Spectrogram</td><td><input type="checkbox" name="spectrogramflag" value="on" checked></td></tr>
+<tr><td>Comparison</td><td><input type="checkbox" name="comparisonflag" value="on"></td></tr>
+<tr><td>AM envelope</td><td><input type="checkbox" name="envelopeflag" value="on" checked></td></tr>
+
+</table>
+
+</td></tr>
+
+</table>
+
+</form>
+
+<font size=-1>
+<table align="center" valign="top"><tr align="left" valign="top"><td><b>Notes:</b></td><td>
+* The "Voice Type Shortcut" provides default settings for higher (e.g. female) and lower (e.g. male) voices, and a 'custom' setting for attributes in italics).<br>
+** RAPT and Praat modules are only available in Linux environments and require <i>get_f0</i> and <i>Praat</i> to be installed.<br>
+*** Be patient if PyRapt is selected. It is very slow (overall time &asymp;50s on this server).<br>
+</td></tr></table>
+</font>
+
+
+<font size="-2">
+<i>Created:
+Di 14. Aug 11:30:33 CEST 2018
+D. Gibbon
+</i>
+</font>
+
+</body></html>
+
